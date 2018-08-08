@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DailyWetherItem">
+            <connections>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PRa-YC-nKc">
+                    <rect key="frame" x="-2" y="83" width="104" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="Hga-J6-08d">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m76-OO-9Xg">
+                    <rect key="frame" x="26" y="32" width="48" height="48"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="EJ6-Kl-CDs"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-Ve-eDb">
+                    <rect key="frame" x="-2" y="0.0" width="104" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="N2i-JK-oj2">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="m76-OO-9Xg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="26" id="3h3-ms-MAk"/>
+                <constraint firstItem="4Md-Ve-eDb" firstAttribute="top" secondItem="m76-OO-9Xg" secondAttribute="bottom" constant="15" id="An0-qS-UqB"/>
+                <constraint firstItem="m76-OO-9Xg" firstAttribute="top" secondItem="PRa-YC-nKc" secondAttribute="bottom" constant="3" id="FrJ-nJ-bjH"/>
+                <constraint firstAttribute="trailing" secondItem="PRa-YC-nKc" secondAttribute="trailing" id="KKU-4W-ICs"/>
+                <constraint firstAttribute="trailing" secondItem="m76-OO-9Xg" secondAttribute="trailing" constant="26" id="Kip-UT-yLL"/>
+                <constraint firstAttribute="trailing" secondItem="4Md-Ve-eDb" secondAttribute="trailing" id="Lyc-a1-3gX"/>
+                <constraint firstItem="PRa-YC-nKc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Xba-k3-HSI"/>
+                <constraint firstItem="m76-OO-9Xg" firstAttribute="top" secondItem="PRa-YC-nKc" secondAttribute="bottom" constant="3" id="YM7-E3-P3r"/>
+                <constraint firstItem="PRa-YC-nKc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="YuS-8A-azC"/>
+                <constraint firstAttribute="bottom" secondItem="4Md-Ve-eDb" secondAttribute="bottom" id="bTW-6E-nMY"/>
+                <constraint firstItem="4Md-Ve-eDb" firstAttribute="top" secondItem="m76-OO-9Xg" secondAttribute="bottom" constant="15" id="fwY-tG-LwN"/>
+                <constraint firstItem="4Md-Ve-eDb" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="t0J-k3-XbY"/>
+            </constraints>
+        </customView>
+        <customObject id="Bp5-EC-Woi" customClass="DailyWetherItem">
+            <connections>
+                <outlet property="date" destination="PRa-YC-nKc" id="Y9A-OZ-ACP"/>
+                <outlet property="temperature" destination="4Md-Ve-eDb" id="Oz0-Ww-iY4"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="36l-DQ-NVY"/>
+                <outlet property="weatherImage" destination="m76-OO-9Xg" id="1N5-vQ-nnc"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

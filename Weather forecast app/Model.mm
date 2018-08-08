@@ -24,6 +24,24 @@ Model::Model()
 }
 
 
+std::map<std::string, std::string> Model::getCity()
+{
+    return m_cities;
+}
+std::map<std::string, std::string> Model::getCurrentCondition()
+{
+    return m_currentCondition;
+}
+std::map<int, std::map<std::string, std::string>> Model::getHoursForecast()
+{
+    return m_hoursForecast;
+}
+std::vector<std::map<std::string, std::string>> Model::getDaysForecast()
+{
+    return m_daysForecast;
+}
+
+
 std::map<std::string, std::string> Model::readFromJSONFile(const std::string fileName)
 {
     NSFileManager *fileManager;
@@ -183,4 +201,6 @@ void Model::getWeatherData(std::string city)
         temp.clear();
     }
     NSLog(@"Boom");
+
+   
 }

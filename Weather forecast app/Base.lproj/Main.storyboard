@@ -674,13 +674,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBo-ZX-lEf">
-                                <rect key="frame" x="0.0" y="146" width="600" height="138"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="2mF-m6-8ml">
-                                    <rect key="frame" x="1" y="1" width="598" height="136"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBo-ZX-lEf">
+                                <rect key="frame" x="50" y="155" width="500" height="138"/>
+                                <clipView key="contentView" drawsBackground="NO" id="2mF-m6-8ml">
+                                    <rect key="frame" x="1" y="1" width="498" height="136"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView ambiguous="YES" id="upy-Xc-f1T">
+                                        <collectionView identifier="hourForecast" id="upy-Xc-f1T">
+                                            <rect key="frame" x="0.0" y="0.0" width="498" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="6gA-tn-zQl">
                                                 <size key="itemSize" width="100" height="100"/>
@@ -701,14 +702,133 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOa-Pp-IUm">
+                                <rect key="frame" x="50" y="7" width="500" height="140"/>
+                                <clipView key="contentView" drawsBackground="NO" id="ncu-4E-tdK">
+                                    <rect key="frame" x="1" y="1" width="498" height="138"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView identifier="dayForecast" id="5BJ-rC-rwV">
+                                            <rect key="frame" x="0.0" y="0.0" width="498" height="138"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="vv4-bi-nAb">
+                                                <size key="itemSize" width="100" height="100"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="A5f-pM-SN2"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="aD3-Z2-Tt9">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="mvU-d9-nOO">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFt-uf-GN0">
+                                <rect key="frame" x="48" y="346" width="105" height="34"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="City" id="3cP-my-lBF">
+                                    <font key="font" metaFont="system" size="27"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ojc-Gt-8pa">
+                                <rect key="frame" x="48" y="304" width="105" height="34"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Country" id="dnQ-2S-uqS">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cir-Yo-dHl">
+                                <rect key="frame" x="296" y="359" width="256" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="SBu-we-rcB">
+                                    <font key="font" metaFont="system" size="17"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8jo-HR-cC1">
+                                <rect key="frame" x="504" y="304" width="46" height="49"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="xTC-fl-M5H"/>
+                            </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="EOa-Pp-IUm" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="50" id="VAA-Lk-IYX"/>
+                            <constraint firstItem="EOa-Pp-IUm" firstAttribute="top" secondItem="EBo-ZX-lEf" secondAttribute="bottom" constant="8" id="XZ0-cp-sFr"/>
+                            <constraint firstAttribute="trailing" secondItem="EOa-Pp-IUm" secondAttribute="trailing" constant="50" id="YTm-vx-epB"/>
+                            <constraint firstItem="EBo-ZX-lEf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="107" id="iCb-hQ-t8d"/>
+                            <constraint firstAttribute="bottom" secondItem="EOa-Pp-IUm" secondAttribute="bottom" constant="7" id="pEz-36-CI7"/>
+                            <constraint firstAttribute="bottom" secondItem="EBo-ZX-lEf" secondAttribute="bottom" constant="155" id="s3m-bl-8X7"/>
+                            <constraint firstAttribute="trailing" secondItem="EBo-ZX-lEf" secondAttribute="trailing" constant="50" id="uMC-Pm-Gat"/>
+                            <constraint firstItem="EBo-ZX-lEf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="50" id="whf-bj-1KZ"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="city" destination="pFt-uf-GN0" id="6jM-m3-ChG"/>
                         <outlet property="collectionView" destination="upy-Xc-f1T" id="sWd-aJ-n5t"/>
+                        <outlet property="country" destination="Ojc-Gt-8pa" id="XCe-B4-U5l"/>
+                        <outlet property="currentTemperature" destination="cir-Yo-dHl" id="sDT-vl-B7q"/>
+                        <outlet property="currentWeatherImage" destination="8jo-HR-cC1" id="Y7k-mA-uhO"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="110" y="804"/>
+            <point key="canvasLocation" x="110" y="838"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="WqY-0o-yKW">
+            <objects>
+                <tabViewController id="fG7-ag-LbZ" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="RFG-Rs-yFY"/>
+                        <tabViewItem identifier="" id="vI2-XL-YBa"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="efW-Aj-m8s">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="lYR-jO-VyO" kind="relationship" relationship="tabItems" id="EUB-l3-jcf"/>
+                        <segue destination="irX-bN-K8n" kind="relationship" relationship="tabItems" id="yOc-Yl-LS3"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="VGd-Me-5hQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="93" y="1402"/>
+        </scene>
+        <!--Hours-->
+        <scene sceneID="51g-LY-B8h">
+            <objects>
+                <viewController title="Hours" id="lYR-jO-VyO" sceneMemberID="viewController">
+                    <view key="view" id="FCN-Y3-Mgc">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="pfI-xn-foC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="1229"/>
+        </scene>
+        <!--Days-->
+        <scene sceneID="z1e-nP-xjD">
+            <objects>
+                <viewController title="Days" id="irX-bN-K8n" sceneMemberID="viewController">
+                    <view key="view" id="zwD-wI-6io">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="KPp-oh-Mr1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="1587"/>
         </scene>
     </scenes>
 </document>

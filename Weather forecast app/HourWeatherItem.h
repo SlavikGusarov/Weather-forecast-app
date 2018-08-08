@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface HourWeatherItem : NSCollectionViewItem
-@property (weak) IBOutlet NSTextFieldCell *label;
-@property (weak) IBOutlet NSImageCell *image;
+@property (weak) IBOutlet NSTextField *time;
+@property (weak) IBOutlet NSTextField *temperature;
+@property (weak) IBOutlet NSTextField *weatherDesc;
+@property (weak) IBOutlet NSImageCell *weatherImage;
 @end
