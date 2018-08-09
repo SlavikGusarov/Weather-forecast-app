@@ -1,16 +1,13 @@
 //
-//  ViewController.h
+//  WindowController.h
 //  Weather forecast app
 //
-//  Created by air on 03.08.18.
+//  Created by air on 08.08.18.
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface ViewController : NSViewController
-
-
+@interface WindowController : NSWindowController
 
 @end
-

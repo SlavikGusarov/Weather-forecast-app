@@ -17,14 +17,26 @@ Model::Model()
 {
     weatherLoader = [[WeatherLoader alloc] init];
     
-    std::map<std::string, std::string> data = {{"city","Odessa"}};
-    this->writeToJSONFile("cities.json", data);
+//    std::map<std::string, std::string> data = {{"city","Odessa"}};
+//    this->writeToJSONFile("cities.json", data);
+//    
+//    NSFileManager *fileManager;
+//    NSString *currentDirectoryPath;
+//    
+//    fileManager = [NSFileManager defaultManager];
+//    currentDirectoryPath = [fileManager currentDirectoryPath];
+//    
+//    NSString* filePath = [currentDirectoryPath stringByAppendingPathComponent:@"cities.json"];
     
-    m_cities = this->readFromJSONFile("cities.json");
+    
+    //m_cities = this->readFromJSONFile([filePath UTF8String]);
+    
+    
+    m_allCities = this->readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
 }
 
 
-std::map<std::string, std::string> Model::getCity()
+std::vector<std::map<std::string, std::string>> Model::getCities()
 {
     return m_cities;
 }
@@ -41,36 +53,68 @@ std::vector<std::map<std::string, std::string>> Model::getDaysForecast()
     return m_daysForecast;
 }
 
+std::vector<std::map<std::string, std::string>> Model::getAllCities()
+{
+    return m_allCities;
+}
 
-std::map<std::string, std::string> Model::readFromJSONFile(const std::string fileName)
+void Model::setCity(std::map<std::string, std::string> city)
+{
+    m_cities.push_back(city);
+}
+
+void Model::clearCities()
+{
+    m_cities.clear();
+}
+
+std::vector<std::map<std::string, std::string>> Model::readFromJSONFile(const std::string filePath)
 {
     NSFileManager *fileManager;
-    NSString *currentDirectoryPath;
-    
+//    NSString *currentDirectoryPath;
+//    
     fileManager = [NSFileManager defaultManager];
-    currentDirectoryPath = [fileManager currentDirectoryPath];
+//    currentDirectoryPath = [fileManager currentDirectoryPath];
+//    
+//    NSString* filePath = [currentDirectoryPath stringByAppendingPathComponent:@(fileName.c_str())];
     
-    NSString* filePath = [currentDirectoryPath stringByAppendingPathComponent:@(fileName.c_str())];
+//    if (![fileManager fileExistsAtPath:@(filePath.c_str())]) {
+//        NSLog(@"Error, file does not exist");
+//        // TODO: ERROR
+//        //return {{{"1",{"error","File does not exist"}}}};
+//    }
     
-    if (![fileManager fileExistsAtPath:filePath]) {
-        return {{"error","File does not exist"}};
-    }
-    
-    NSData* data = [NSData dataWithContentsOfFile:filePath];
+    NSData* data = [NSData dataWithContentsOfFile:@(filePath.c_str())];
     
     NSError *e = nil;
-    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
-
-    // TODO: Error handler
+    NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0/*NSJSONReadingAllowFragments*/ error:&e];
     
-    std::map<std::string, std::string> map;
-    
-    for(NSString *key in result)
-    {
-        //map.emplace(std::string([key UTF8String]), std::string([[result objectForKey:key] UTF8String]));
-        map[std::string([key UTF8String])] = std::string([[result objectForKey:key] UTF8String]);
-    }
-    return map;
+//    if (!jsonData || e)
+//    {
+//        NSLog(@"Error, %@", e);
+//        // TODO: ERROR
+//        //return {{{"1",{"error","Can't read file"}}}};
+//    }
+//    else
+//    {
+        std::vector<std::map<std::string, std::string>> result;
+        std::map<std::string, std::string> map;
+        
+//        for(NSString *key in jsonData)
+//        {
+//            map[std::string([key UTF8String])] = std::string([[jsonData objectForKey:key] UTF8String]);
+//        }
+        for(NSDictionary *dict in jsonData)
+        {
+            for(NSString* key in dict)
+            {
+                map[std::string([key UTF8String])] = std::string([[dict objectForKey:key] UTF8String]);
+            }
+            result.push_back(map);
+            map.clear();
+        }
+        return result;
+//    }
 }
 
 void Model::writeToJSONFile(const std::string fileName,const std::map<std::string, std::string> dataToWrite)

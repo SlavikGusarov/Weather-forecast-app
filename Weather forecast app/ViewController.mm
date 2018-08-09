@@ -6,39 +6,35 @@
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
 
-#include "Manager.h"
-#include "Model.h"
+//#include "Manager.h"
+//#include "Model.h"
 
 #import "ViewController.h"
 #import "HourWeatherItem.h"
 #import "DailyWetherItem.h"
+#import "ModelManager.h"
 
 @interface ViewController()
-{
-    Model *model;
-    //Manager manager;
-}
+
 @property (weak) IBOutlet NSTextField *city;
 @property (weak) IBOutlet NSTextField *country;
 @property (weak) IBOutlet NSTextField *currentTemperature;
 @property (weak) IBOutlet NSImageView *currentWeatherImage;
 
-@property (nonatomic, assign) NSInteger hour;
+
+@property (nonatomic, assign) ModelManager *manager;
+
 @end
 
 
 @implementation ViewController
-- (IBAction)move:(NSButton *)sender {
-    [self performSegueWithIdentifier:@"segue1" sender:sender];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    model = new Model();
+    _manager = [ModelManager sharedManager];
     
-    model->getWeatherData("Odessa,ua");
-    
+    _manager.model->getWeatherData("Odessa,ua");
 //    dispatch_async(dispatch_get_global_queue
 //                   (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
 //                   ^{
@@ -46,72 +42,17 @@
 //                   });
     _city.stringValue = @"Odessa";
     _country.stringValue = @"Ukraine";
-    _currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃", @(model->getCurrentCondition()["temp_C"].c_str())];
+    _currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃", @(_manager.model->getCurrentCondition()["temp_C"].c_str())];
     
     
-    long weatherCode = [@(model->getCurrentCondition()["weatherCode"].c_str()) integerValue];
+    long weatherCode = [@(_manager.model->getCurrentCondition()["weatherCode"].c_str()) integerValue];
     
     _currentWeatherImage.image = [NSImage imageNamed:[self weatherImageNameFromCode:weatherCode]];
-    
-    
-    NSDate *date = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date];
-    _hour = [components hour];
-    //NSInteger minute = [components minute];
-    
-}
-
-- (NSInteger)collectionView:(NSCollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section
-{
-    if([[collectionView identifier] isEqualToString:@"hourForecast"])
-    {
-        return 24;
-    }
-    else
-    {
-        return 14;
-    }
-}
-
-- (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView
-     itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([[collectionView identifier] isEqualToString:@"hourForecast"])
-    {
-        
-        int indexBasedOnTime = (indexPath.item+self.hour > 23)?(indexPath.item + self.hour-24) : (self.hour+indexPath.item);
-        
-        HourWeatherItem *item = [collectionView makeItemWithIdentifier:@"HourWeatherItem"
-                                                          forIndexPath:indexPath ];
-        
-        item.time.stringValue = [NSString stringWithFormat:@"%d.00",indexBasedOnTime];
-        item.temperature.stringValue = [NSString stringWithFormat:@"%@ ℃",
-                                        @(model->getHoursForecast()[indexBasedOnTime]["tempC"].c_str())];
-        item.weatherDesc.stringValue = @(model->getHoursForecast()[indexBasedOnTime]["weatherDesc"].c_str());
-        
-        long weatherCode = [@(model->getHoursForecast()[indexBasedOnTime]["weatherCode"].c_str()) integerValue];
-        item.weatherImage.image = [NSImage imageNamed:[self weatherImageNameFromCode:weatherCode]];
-        return item;
-    }
-    else
-    {
-        DailyWetherItem *item = [collectionView makeItemWithIdentifier:@"DailyWetherItem"
-                                                          forIndexPath:indexPath ];
-        item.date.stringValue = @(model->getDaysForecast()[(int)indexPath.item]["date"].c_str());
-        item.temperature.stringValue = [NSString stringWithFormat:@"%@ ℃",
-                                        @(model->getDaysForecast()[(int)indexPath.item]["tempC"].c_str())];
-        long weatherCode = [@(model->getDaysForecast()[(int)indexPath.item]["weatherCode"].c_str()) integerValue];
-        item.weatherImage.image = [NSImage imageNamed:[self weatherImageNameFromCode:weatherCode]];
-        
-        return item;
-    }
-
 }
 
 - (NSString*) weatherImageNameFromCode: (long) weatherCode
 {
+    // TODO: DELETE THIS
     switch (weatherCode) {
         case 113:
         {
