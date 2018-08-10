@@ -75,14 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		457118A62119D22A00ADF99F /* HourWetherItem */ = {
+		457118A62119D22A00ADF99F /* WetherItem */ = {
 			isa = PBXGroup;
 			children = (
 				451D38F021188C80006E3B79 /* HourWeatherItem.h */,
 				451D38F121188C80006E3B79 /* HourWeatherItem.m */,
 				451D38F221188C80006E3B79 /* HourWeatherItem.xib */,
 			);
-			name = HourWetherItem;
+			name = WetherItem;
 			sourceTree = "<group>";
 		};
 		457118A72119D24600ADF99F /* Model and Manager */ = {
@@ -156,7 +156,7 @@
 		4577832E211C40F5003E27DE /* CollectionsController */ = {
 			isa = PBXGroup;
 			children = (
-				457118A62119D22A00ADF99F /* HourWetherItem */,
+				457118A62119D22A00ADF99F /* WetherItem */,
 				457118AD2119DBB700ADF99F /* DailyWeherItem */,
 				452D09F5211B3D1300510295 /* CollectionsViewController.h */,
 				452D09F6211B3D1300510295 /* CollectionsViewController.mm */,

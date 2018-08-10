@@ -40,8 +40,8 @@ public:
     
     std::vector<std::map<std::string, std::string>> getCities();
     std::map<std::string, std::string> getCurrentCondition();
-    // TODO : Make hourforecast vector
-    std::map<int, std::map<std::string, std::string>> getHoursForecast();
+
+    std::vector<std::map<std::string, std::string>> getHoursForecast();
     std::vector<std::map<std::string, std::string>> getDaysForecast();
     
     void loadAllCities();
@@ -59,6 +59,8 @@ public:
     
     void nextCity();
     void previousCity();
+    
+    std::string weatherImageNameFromCode(long weatherCode, long hours);
 private:
     
     int m_numberOfCurrentCity;
@@ -71,7 +73,8 @@ private:
     std::vector<std::map<std::string, std::string>> m_allCities;
     
     
-    std::map<int, std::map<std::string, std::string>> m_hoursForecast;
+    //std::map<int, std::map<std::string, std::string>> m_hoursForecast;
+    std::vector<std::map<std::string, std::string>> m_hoursForecast;
     std::vector<std::map<std::string, std::string>> m_daysForecast;
 
     

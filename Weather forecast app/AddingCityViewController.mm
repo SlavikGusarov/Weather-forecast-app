@@ -63,36 +63,48 @@
 
 - (IBAction)cancelButton:(id)sender {
     [self dismissViewController:self];
+    __weak __typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue
+                   (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                   ^{
+                       weakSelf .manager->getModel()->releaseListOfAllCities();
+                   });
 }
 
 
 - (IBAction)searchWith:(NSSearchField *)sender {
-    if ([sender.stringValue length] == 0)
-    {
-        self.manager->getModel()->clearCities();
-    }
-    else
-    {
-        if([sender.stringValue length] > 2)
-        {
-            self.manager->getModel()->clearCities();
-            long found = -1;
-            std::string cityToLover;
-            for(auto city : self.manager->getModel()->getAllCities())
-            {
-                cityToLover = city["name"];
-                std::transform(cityToLover.begin(), cityToLover.end(), cityToLover.begin(), ::tolower);
-                
-                
-                found = cityToLover.find([sender.stringValue.lowercaseString UTF8String]);
-                if (found == 0)
-                {
-                    self.manager->getModel()->setCity(city);
-                }
-            }
-        }
-    }
-    [_table reloadData];
+    __weak __typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue
+                   (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                   ^{
+                       if ([sender.stringValue length] == 0)
+                       {
+                           weakSelf.manager->getModel()->clearCities();
+                       }
+                       else
+                       {
+                           if([sender.stringValue length] > 2)
+                           {
+                               weakSelf.manager->getModel()->clearCities();
+                               long found = -1;
+                               std::string cityToLover;
+                               for(auto city : weakSelf.manager->getModel()->getAllCities())
+                               {
+                                   cityToLover = city["name"];
+                                   std::transform(cityToLover.begin(), cityToLover.end(), cityToLover.begin(), ::tolower);
+                                   
+                                   found = cityToLover.find([sender.stringValue.lowercaseString UTF8String]);
+                                   if (found == 0)
+                                   {
+                                       weakSelf.manager->getModel()->setCity(city);
+                                   }
+                               }
+                           }
+                       }
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           [weakSelf.table reloadData];
+                       });
+                   });
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

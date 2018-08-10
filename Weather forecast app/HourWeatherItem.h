@@ -13,4 +13,18 @@
 @property (weak) IBOutlet NSTextField *temperature;
 @property (weak) IBOutlet NSTextField *weatherDesc;
 @property (weak) IBOutlet NSImageCell *weatherImage;
+// windspeedKmph - Wind speed in kilometers per hour
+@property (weak) IBOutlet NSTextField *windSpeed;
+// precipMM - Precipitation in millimeters
+@property (weak) IBOutlet NSTextField *precipMM;
+// humidity - Humidity in percentage (%)
+@property (weak) IBOutlet NSTextField *humidity;
+// visibility - Visibility in kilometers
+@property (weak) IBOutlet NSTextField *visibility;
+// pressure - Atmospheric pressure in millibars (mb)
+@property (weak) IBOutlet NSTextField *pressure;
+// cloudcover - Cloud cover amount in percentage (%)
+@property (weak) IBOutlet NSTextField *cloudcover;
+// chanceofrain - Chance of rain (precipitation) in percentage (%).
+@property (weak) IBOutlet NSTextField *chanceOfRain;
 @end

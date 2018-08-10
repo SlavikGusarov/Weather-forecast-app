@@ -839,14 +839,6 @@
                                     <segue destination="fG7-ag-LbZ" kind="embed" id="W5D-xG-sik"/>
                                 </connections>
                             </containerView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kPh-XA-ygR">
-                                <rect key="frame" x="152" y="341" width="136" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="hJL-pm-yGp">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPn-gT-nEa">
                                 <rect key="frame" x="455" y="332" width="48" height="35"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C2K-aZ-bTR">
@@ -867,9 +859,9 @@
                                     <action selector="nextCityLeft:" target="mBv-7d-wma" id="jnF-PW-SEk"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="04o-5k-2Sj">
-                                <rect key="frame" x="286" y="341" width="163" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="lRm-uD-HC4">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kPh-XA-ygR">
+                                <rect key="frame" x="192" y="341" width="216" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="hJL-pm-yGp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -884,7 +876,6 @@
                     </view>
                     <connections>
                         <outlet property="city" destination="kPh-XA-ygR" id="YLt-34-sZC"/>
-                        <outlet property="country" destination="04o-5k-2Sj" id="w9R-Qy-fyk"/>
                     </connections>
                 </viewController>
             </objects>
@@ -972,17 +963,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdt-DZ-LHJ">
+                            <scrollView borderType="groove" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" scrollerKnobStyle="light" translatesAutoresizingMaskIntoConstraints="NO" id="Cdt-DZ-LHJ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="0ZT-3S-77J">
-                                    <rect key="frame" x="1" y="1" width="598" height="298"/>
+                                    <rect key="frame" x="2" y="2" width="596" height="296"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView identifier="hourForecast" id="uDY-SJ-crv">
-                                            <rect key="frame" x="0.0" y="0.0" width="598" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="596" height="296"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="0Ex-6I-K5d">
-                                                <size key="itemSize" width="100" height="200"/>
+                                                <size key="itemSize" width="150" height="250"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
@@ -1034,7 +1025,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="598" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="vv4-bi-nAb">
-                                                <size key="itemSize" width="100" height="200"/>
+                                                <size key="itemSize" width="150" height="250"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>

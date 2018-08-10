@@ -32,7 +32,7 @@ std::map<std::string, std::string> Model::getCurrentCondition()
 {
     return m_currentCondition;
 }
-std::map<int, std::map<std::string, std::string>> Model::getHoursForecast()
+std::vector<std::map<std::string, std::string>> Model::getHoursForecast()
 {
     return m_hoursForecast;
 }
@@ -101,9 +101,7 @@ void Model::nextCity()
     if(m_userFavoriteCities.size() > 1 && m_numberOfCurrentCity < m_userFavoriteCities.size())
     {
         ++m_numberOfCurrentCity;
-        getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]
-                       .append(",")
-                       .append(m_userFavoriteCities[m_numberOfCurrentCity]["country"]));
+        getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]);
         onUpdate();
     }
     
@@ -114,9 +112,7 @@ void Model::previousCity()
     {
         --m_numberOfCurrentCity;
     
-        getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]
-                       .append(",")
-                       .append(m_userFavoriteCities[m_numberOfCurrentCity]["country"]));
+        getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]);
         onUpdate();
     }
 }
@@ -243,6 +239,7 @@ void Model::saveFavoriteCities()
 
 void Model::getWeatherData(std::string city)
 {
+    NSLog(@"%@", @(city.c_str()));
     m_currentCondition.clear();
     m_daysForecast.clear();
     m_hoursForecast.clear();
@@ -279,6 +276,13 @@ void Model::getWeatherData(std::string city)
     for (NSDictionary *hour in hours)
     {
         hourAsKey = [[hour objectForKey:@"time"] integerValue]/100;
+        NSLog(@"%@",[hour objectForKey:@"time"]);
+        // If "time"
+        if([[hour objectForKey:@"time"] isEqualToString:@"24"])
+        {
+            continue;
+        }
+        
         for(NSString *key in hour)
         {
             if([[hour objectForKey:key] isKindOfClass: [NSString class]])
@@ -294,7 +298,8 @@ void Model::getWeatherData(std::string city)
                                                                                  UTF8String]);
             }
         }
-        m_hoursForecast[hourAsKey] = temp;
+        temp["time"] = std::string([[hour objectForKey:@"time"] UTF8String]);
+        m_hoursForecast.push_back(temp);
         temp.clear();
     }
     
@@ -327,5 +332,127 @@ void Model::getWeatherData(std::string city)
         m_daysForecast.push_back(temp);
         temp.clear();
     }
-  
+}
+
+
+std::string Model::weatherImageNameFromCode(long weatherCode, long hours)
+{
+    switch (weatherCode) {
+        case 113:
+        {
+            // Clear
+            if (hours > 5 && hours < 21)
+            {
+                return  "113";
+            }
+            return "113night";
+        }
+        case 116:
+        {
+            // Partly Cloudy
+            if (hours > 5 && hours < 21)
+            {
+                return "116";
+            }
+            return "116night";
+        }
+        case 119:
+        {
+            // Cloudy
+            return "119";
+        }
+        case 122:
+        {
+            // Overcast
+            if (hours > 5 && hours < 21)
+            {
+                return "122";
+            }
+            return "122night";
+        }
+        case 143:
+        case 248:
+        case 260:
+        {
+            // Fog
+            if (hours > 5 && hours < 21)
+            {
+                return "143";
+            }
+            return "143night";
+        }
+        case 176:
+        case 263:
+        case 266:
+        case 293:
+        case 296:
+        case 353:
+        case 362:
+        case 368:
+        case 374:
+        {
+            // Light rain
+            if (hours > 5 && hours < 21)
+            {
+                return "176";
+            }
+            return "176night";
+        }
+        case 200:
+        case 395:
+        case 392:
+        case 389:
+        case 386:
+        {
+            // Thunder
+            return "200";
+        }
+        case 302:
+        case 308:
+        case 305:
+        case 299:
+        case 311:
+        case 359:
+        case 356:
+        case 365:
+        case 371:
+        case 377:
+        {
+            // Heavy rain
+            return "302";
+        }
+        case 179:
+        case 182:
+        case 317:
+        case 185:
+        case 329:
+        case 326:
+        case 323:
+        {
+            // Light snow
+            return "179";
+        }
+        case 227:
+        case 230:
+        case 350:
+        case 338:
+        case 335:
+        case 332:
+        case 320:
+        {
+            // Heavy snow
+            return "227";
+        }
+        case 281:
+        case 314:
+        case 284:
+        {
+            // Freeze
+            return "281";
+        }
+        default:
+        {
+            return "default";
+        }
+    }
 }

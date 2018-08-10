@@ -13,11 +13,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="HourWeatherItem" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5i-Ix-YXZ">
-                    <rect key="frame" x="-2" y="242" width="104" height="17"/>
+                    <rect key="frame" x="-2" y="233" width="154" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="Z2v-HH-6gX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,36 +25,108 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-MV-yKR">
-                    <rect key="frame" x="-2" y="220" width="104" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="VQA-JX-XNL">
+                    <rect key="frame" x="-2" y="176" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="VQA-JX-XNL">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MiT-fH-NQy">
-                    <rect key="frame" x="-2" y="200" width="104" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="irq-pl-kMH">
+                    <rect key="frame" x="-2" y="154" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="irq-pl-kMH">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZJd-oG-V2n">
+                    <rect key="frame" x="-2" y="110" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="8sD-1m-xtJ">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDe-lI-Kob">
+                    <rect key="frame" x="-2" y="88" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="JdF-Yn-IJX">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8k1-5V-J7N">
+                    <rect key="frame" x="-2" y="44" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="aW7-l5-o69">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujy-vz-lbl">
+                    <rect key="frame" x="-2" y="66" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="kA6-xU-xwq">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4I-LN-fgM">
+                    <rect key="frame" x="-2" y="22" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="3Mf-b9-nzS">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kD4-Hb-qPb">
+                    <rect key="frame" x="-2" y="0.0" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="P4m-Nq-iev">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Oy-cf-eZX">
+                    <rect key="frame" x="-2" y="132" width="154" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="aZl-GW-VM5">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMG-z2-5id">
-                    <rect key="frame" x="35" y="267" width="30" height="30"/>
+                    <rect key="frame" x="60" y="200" width="30" height="30"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="0bl-nr-gc8"/>
                 </imageView>
             </subviews>
         </customView>
         <customObject id="wDv-ZZ-in2" customClass="HourWeatherItem">
             <connections>
+                <outlet property="chanceOfRain" destination="kD4-Hb-qPb" id="Tkx-Ke-wIr"/>
+                <outlet property="cloudcover" destination="c4I-LN-fgM" id="RmM-3S-RLB"/>
+                <outlet property="humidity" destination="JDe-lI-Kob" id="bTH-88-JH9"/>
                 <outlet property="image" destination="0bl-nr-gc8" id="dvO-D1-Qgh"/>
+                <outlet property="precipMM" destination="ZJd-oG-V2n" id="QGC-OE-PkM"/>
+                <outlet property="pressure" destination="8k1-5V-J7N" id="0gq-5V-4GY"/>
                 <outlet property="temperature" destination="BNN-MV-yKR" id="lwa-ir-m6q"/>
                 <outlet property="time" destination="a5i-Ix-YXZ" id="mpt-Jn-oEq"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="XlP-A1-AVq"/>
+                <outlet property="visibility" destination="ujy-vz-lbl" id="IOF-Vh-4Uh"/>
                 <outlet property="weatherDesc" destination="MiT-fH-NQy" id="pWS-Dd-4v8"/>
                 <outlet property="weatherImage" destination="0bl-nr-gc8" id="xbv-z1-ifa"/>
+                <outlet property="windSpeed" destination="4Oy-cf-eZX" id="tnw-k1-RjB"/>
             </connections>
         </customObject>
+        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="x1o-qe-m9u">
+            <rect key="frame" x="0.0" y="0.0" width="104" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="vbO-u6-ssg">
+                <font key="font" metaFont="system"/>
+                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+            </textFieldCell>
+        </textField>
     </objects>
 </document>

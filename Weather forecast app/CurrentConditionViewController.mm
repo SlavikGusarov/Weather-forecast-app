@@ -60,7 +60,7 @@
         
         long weatherCode = [@(weakSelf.manager->getModel()->getCurrentCondition()["weatherCode"].c_str()) integerValue];
         
-        _currentWeatherImage.image = [NSImage imageNamed:[weakSelf weatherImageNameFromCode:weatherCode]];
+        weakSelf.currentWeatherImage.image = [NSImage imageNamed:[weakSelf weatherImageNameFromCode:weatherCode]];
         
     });
     
