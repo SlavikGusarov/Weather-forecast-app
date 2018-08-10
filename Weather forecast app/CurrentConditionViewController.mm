@@ -5,18 +5,24 @@
 //  Created by air on 09.08.18.
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
+#include "Manager.h"
 
 #import "CurrentConditionViewController.h"
-#import "ModelManager.h"
+
+#define CURRENT_CODITION_GROUP 3
 
 @interface CurrentConditionViewController ()
+{
+    Manager *_manager;
+}
+
+@property (nonatomic, assign) Manager *manager;
 
 @property (weak) IBOutlet NSTextField *city;
 @property (weak) IBOutlet NSTextField *country;
 @property (weak) IBOutlet NSTextField *currentTemperature;
 @property (weak) IBOutlet NSImageView *currentWeatherImage;
 
-@property (nonatomic, assign) ModelManager *manager;
 @end
 
 @implementation CurrentConditionViewController
@@ -24,11 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-      _manager = [ModelManager sharedManager];
+     _manager = Manager::getInstance();
     
-    std::vector<std::map<std::string, std::string>> cities = _manager.model->getUserFavoriteCities();
-    
-    if(cities.size() == 0)
+    if(_manager->getModel()->getUserFavoriteCities().size() == 0)
     {
         _city.stringValue = @"";
         _country.stringValue = @"";
@@ -36,19 +40,27 @@
     }
     else
     {
-        _city.stringValue = @(_manager.model->getUserFavoriteCities()[_manager.model->getNumberOfCurrentCity()]["name"].c_str());
-        _country.stringValue = @(_manager.model->getUserFavoriteCities()[_manager.model->getNumberOfCurrentCity()]["country"].c_str());
-        _currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃", @(_manager.model->getCurrentCondition()["temp_C"].c_str())];
+        _city.stringValue = @(_manager->getModel()->getUserFavoriteCities()[_manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
+        _country.stringValue = @(_manager->getModel()->getUserFavoriteCities()[_manager->getModel()->getNumberOfCurrentCity()]["country"].c_str());
+        _currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃",
+                                           @(_manager->getModel()->getCurrentCondition()["temp_C"].c_str())];
     
-        long weatherCode = [@(_manager.model->getCurrentCondition()["weatherCode"].c_str()) integerValue];
+        long weatherCode = [@(_manager->getModel()->getCurrentCondition()["weatherCode"].c_str()) integerValue];
     
         _currentWeatherImage.image = [NSImage imageNamed:[self weatherImageNameFromCode:weatherCode]];
     }
+    
     __weak __typeof(self)weakSelf = self;
     
-    _manager.model->onUpdate.connect(3, [weakSelf](){
-        weakSelf.city.stringValue = @(weakSelf.manager.model->getUserFavoriteCities()[weakSelf.manager.model->getNumberOfCurrentCity()]["name"].c_str());
-        weakSelf.country.stringValue = @(weakSelf.manager.model->getUserFavoriteCities()[weakSelf.manager.model->getNumberOfCurrentCity()]["country"].c_str());
+    _manager->getModel()->onUpdate.connect(CURRENT_CODITION_GROUP, [weakSelf](){
+        weakSelf.city.stringValue = @(weakSelf.manager->getModel()->getUserFavoriteCities()[weakSelf.manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
+        weakSelf.country.stringValue = @(weakSelf.manager->getModel()->getUserFavoriteCities()[weakSelf.manager->getModel()->getNumberOfCurrentCity()]["country"].c_str());
+        weakSelf.currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃",
+                                           @(weakSelf.manager->getModel()->getCurrentCondition()["temp_C"].c_str())];
+        
+        long weatherCode = [@(weakSelf.manager->getModel()->getCurrentCondition()["weatherCode"].c_str()) integerValue];
+        
+        _currentWeatherImage.image = [NSImage imageNamed:[weakSelf weatherImageNameFromCode:weatherCode]];
         
     });
     
