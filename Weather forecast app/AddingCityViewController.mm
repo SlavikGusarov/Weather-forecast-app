@@ -10,6 +10,7 @@
 
 #import "AddingCityViewController.h"
 
+#pragma mark - interface
 
 @interface AddingCityViewController ()
 {
@@ -20,91 +21,113 @@
 
 @property (weak) IBOutlet NSTableView *table;
 
+@property (nonatomic, assign) BOOL isSearching;
+
 @end
 
 @implementation AddingCityViewController
 
 @synthesize manager = _manager;
 
+#pragma mark - viewDidLoad
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
     _manager = Manager::getInstance();
+    _isSearching = NO;
     
     __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue
                    (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
                        weakSelf.manager->getModel()->loadAllCities();
-                       
-//                       dispatch_async(dispatch_get_main_queue(), ^{
-//                           
-//                       });
                    });
     
 }
+
+#pragma mark - Done and cancel byttons
+
 - (IBAction)doneButton:(NSButton *)sender {
     if ([_table selectedRow] != -1)
     {
-        self.manager->getModel()->setUserFavoriteCities(self.manager->getModel()->getCities()[[_table selectedRow]]);
-        self.manager->getModel()->saveFavoriteCities();
+        bool alreadyExist = false;
+        for(auto city : self.manager->getModel()->getUserFavoriteCities())
+        {
+            if(city["lat"] == self.manager->getModel()->getCities()[[_table selectedRow]]["lat"] &&
+               city["lng"] == self.manager->getModel()->getCities()[[_table selectedRow]]["lng"])
+            {
+                alreadyExist = true;
+            }
+        }
+        if (!alreadyExist)
+        {
+            self.manager->getModel()->setUserFavoriteCities(self.manager->getModel()->getCities()[[_table selectedRow]]);
+            self.manager->getModel()->saveFavoriteCities();
+        }
     }
-    
-    [self dismissViewController:self];
-    
     __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue
                    (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
-                       weakSelf .manager->getModel()->releaseListOfAllCities();
-                    });
+                       weakSelf.manager->getModel()->releaseListOfAllCities();
+                   });
+    [self dismissViewController:self];
 }
 
 - (IBAction)cancelButton:(id)sender {
-    [self dismissViewController:self];
     __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue
                    (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
                    ^{
-                       weakSelf .manager->getModel()->releaseListOfAllCities();
+                       weakSelf.manager->getModel()->releaseListOfAllCities();
+
                    });
+    [self dismissViewController:self];
 }
 
+#pragma mark - Search
 
 - (IBAction)searchWith:(NSSearchField *)sender {
-    __weak __typeof(self)weakSelf = self;
-    dispatch_async(dispatch_get_global_queue
-                   (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-                   ^{
-                       if ([sender.stringValue length] == 0)
-                       {
-                           weakSelf.manager->getModel()->clearCities();
-                       }
-                       else
-                       {
-                           if([sender.stringValue length] > 2)
-                           {
-                               weakSelf.manager->getModel()->clearCities();
-                               long found = -1;
-                               std::string cityToLover;
-                               for(auto city : weakSelf.manager->getModel()->getAllCities())
-                               {
-                                   cityToLover = city["name"];
-                                   std::transform(cityToLover.begin(), cityToLover.end(), cityToLover.begin(), ::tolower);
-                                   
-                                   found = cityToLover.find([sender.stringValue.lowercaseString UTF8String]);
-                                   if (found == 0)
+    if ([sender.stringValue length] == 0)
+    {
+        self.manager->getModel()->clearCities();
+    }
+    else
+    {
+        if([sender.stringValue length] > 2)
+        {
+            self.manager->getModel()->clearCities();
+            if(!self.isSearching)
+            {
+                __weak __typeof(self)weakSelf = self;
+                dispatch_async(dispatch_get_global_queue
+                               (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                               ^{
+                                   long found = -1;
+                                   std::string cityToLover;
+                                   for(auto city : weakSelf.manager->getModel()->getAllCities())
                                    {
-                                       weakSelf.manager->getModel()->setCity(city);
+                                       cityToLover = city["name"];
+                                       std::transform(cityToLover.begin(), cityToLover.end(), cityToLover.begin(), ::tolower);
+                                       
+                                       found = cityToLover.find([sender.stringValue.lowercaseString UTF8String]);
+                                       if (found == 0)
+                                       {
+                                           weakSelf.manager->getModel()->setCity(city);
+                                       }
                                    }
-                               }
-                           }
-                       }
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           [weakSelf.table reloadData];
-                       });
-                   });
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       weakSelf.isSearching = NO;
+                                       [weakSelf.table reloadData];
+                                   });
+                                });
+            }
+        }
+    }
+    [self.table reloadData];
 }
+
+#pragma mark - NSTableViewDataSource functions
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {

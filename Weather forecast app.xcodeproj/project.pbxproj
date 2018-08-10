@@ -49,7 +49,6 @@
 		4577833A211CA7FC003E27DE /* MySignal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MySignal.hpp; sourceTree = "<group>"; };
 		45EC11CA2115BD910025F5D0 /* Model.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Model.mm; sourceTree = "<group>"; };
 		45EC11CB2115BD910025F5D0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		45EC11CD2115BF690025F5D0 /* IModelable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IModelable.h; sourceTree = "<group>"; };
 		45EC11CE2115BFD30025F5D0 /* Manager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Manager.mm; sourceTree = "<group>"; };
 		45EC11CF2115BFD30025F5D0 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		45EC11D12115C0670025F5D0 /* WeatherLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherLoader.m; sourceTree = "<group>"; };
@@ -157,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				45778332211C45E8003E27DE /* Obj-C WeatherLoader */,
-				45EC11CD2115BF690025F5D0 /* IModelable.h */,
 				45EC11CB2115BD910025F5D0 /* Model.h */,
 				45EC11CA2115BD910025F5D0 /* Model.mm */,
 			);

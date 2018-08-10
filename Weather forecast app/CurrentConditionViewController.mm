@@ -75,7 +75,7 @@
         
         _temperature.stringValue = [NSString stringWithFormat:@"Temp: %@ ℃",
                                    @(forecast["tempC"].c_str())];
-        _weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@ ℃",
+        _weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@",
                                    @(forecast["weatherDesc"].c_str())];
         _windSpeed.stringValue = [NSString stringWithFormat:@"Wind speed: %@ Kmph",
                                  @(forecast["windspeedKmph"].c_str())];

@@ -13,6 +13,8 @@
 
 #define COLLECTION_CONTROLLER_GROUP 2
 
+#pragma mark - Interface
+
 @interface CollectionsViewController ()
 {
     Manager *_manager;
@@ -27,6 +29,8 @@
 @end
 
 @implementation CollectionsViewController
+
+#pragma mark - viewDidLoad
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +52,8 @@
     });
     
 }
+
+#pragma mark - NSCollectionViewDataSource functions
 
 - (NSInteger)collectionView:(NSCollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section
@@ -74,29 +80,41 @@
 {
     
     long indexBasedOnTime = indexPath.item;
+    
     WeatherItem *item = [collectionView makeItemWithIdentifier:@"WeatherItem"
                                                       forIndexPath:indexPath ];
+    
     std::vector<std::map<std::string, std::string>> forecast;
+    
     if([[collectionView identifier] isEqualToString:@"hourForecast"])
     {
-        indexBasedOnTime = (indexPath.item+self.hour > 23)?(indexPath.item + self.hour-24) : (self.hour+indexPath.item);
+        indexBasedOnTime = (indexPath.item+self.hour > 23) ? (indexPath.item + self.hour-24) : (self.hour+indexPath.item);
+        
         forecast = self.manager->getModel()->getHoursForecast();
+        
         long weatherCode = [@(forecast[indexBasedOnTime]["weatherCode"].c_str()) integerValue];
-        item.weatherImage.image = [NSImage imageNamed:@(self.manager->getModel()->weatherImageNameFromCode(weatherCode, indexBasedOnTime).c_str())];
+        
+        item.weatherImage.image = [NSImage imageNamed:
+                                   @(self.manager->getModel()->weatherImageNameFromCode(weatherCode, indexBasedOnTime).c_str())];
+        
         item.time.stringValue = [NSString stringWithFormat:@"%li.00",indexBasedOnTime];
     }
     else
     {
         forecast = self.manager->getModel()->getDaysForecast();
+        
         long weatherCode = [@(forecast[(int)indexPath.item]["weatherCode"].c_str()) integerValue];
-        item.weatherImage.image = [NSImage imageNamed:@(self.manager->getModel()->weatherImageNameFromCode(weatherCode,12).c_str())];
+        
+        item.weatherImage.image = [NSImage imageNamed:
+                                   @(self.manager->getModel()->weatherImageNameFromCode(weatherCode,12).c_str())];
+        
         item.time.stringValue = @(forecast[(int)indexPath.item]["date"].c_str());
     }
         
     
     item.temperature.stringValue = [NSString stringWithFormat:@"Temp: %@ ℃",
                                     @(forecast[indexBasedOnTime]["tempC"].c_str())];
-    item.weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@ ℃",
+    item.weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@",
                                     @(forecast[indexBasedOnTime]["weatherDesc"].c_str())];
     item.windSpeed.stringValue = [NSString stringWithFormat:@"Wind speed: %@ Kmph",
                                  @(forecast[indexBasedOnTime]["windspeedKmph"].c_str())];
@@ -115,19 +133,5 @@
     
 
     return item;
-//    }
-//    else
-//    {
-//        DailyWetherItem *item = [collectionView makeItemWithIdentifier:@"DailyWetherItem"
-//                                                          forIndexPath:indexPath ];
-//        item.date.stringValue = @(self.manager->getModel()->getDaysForecast()[(int)indexPath.item]["date"].c_str());
-//        item.temperature.stringValue = [NSString stringWithFormat:@"%@ ℃",
-//                                        @(self.manager->getModel()->getDaysForecast()[(int)indexPath.item]["tempC"].c_str())];
-//        long weatherCode = [@(self.manager->getModel()->getDaysForecast()[(int)indexPath.item]["weatherCode"].c_str()) integerValue];
-//        item.weatherImage.image = [NSImage imageNamed:@(self.manager->getModel()->weatherImageNameFromCode(weatherCode,12).c_str())];
-//        
-//        return item;
-//    }
-    
 }
 @end

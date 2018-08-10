@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include "IModelable.h"
 #include "MySignal.hpp"
 #include <string>
 #include <map>
@@ -18,7 +17,7 @@
 
 typedef std::vector<std::map<std::string, std::string>> ArrayOfDict;
 
-class Model : IModelable
+class Model
 {
 public:
     Model();

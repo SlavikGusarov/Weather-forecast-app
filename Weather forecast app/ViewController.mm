@@ -57,6 +57,8 @@
 
 }
 
+#pragma mark - Buttons
+
 - (IBAction)nextCityRight:(id)sender {
     self.manager->getModel()->nextCity();
 }

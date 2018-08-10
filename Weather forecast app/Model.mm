@@ -12,6 +12,14 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Load list of cities (file path)
+
+void Model::loadAllCities()
+{
+    m_allCities = readFromJSONFile("/Users/air/Desktop/Weather forecast app/allCities.json");
+}
+
+#pragma mark - Constructor
 
 Model::Model()
 {
@@ -19,10 +27,9 @@ Model::Model()
     
     m_numberOfCurrentCity = 0;
     this->loadFavoriteCities();
-   
-    //m_allCities = this->readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
 }
 
+#pragma mark - Getters
 
 std::vector<std::map<std::string, std::string>> Model::getCities()
 {
@@ -41,35 +48,33 @@ std::vector<std::map<std::string, std::string>> Model::getDaysForecast()
     return m_daysForecast;
 }
 
-void Model::loadAllCities()
-{
-    m_allCities = readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
-}
-
 std::vector<std::map<std::string, std::string>> Model::getAllCities()
 {
     return m_allCities;
 }
 
-void Model::releaseListOfAllCities()
+std::vector<std::map<std::string, std::string>> Model::getUserFavoriteCities()
 {
-    m_allCities.clear();
+    return m_userFavoriteCities;
 }
+
+int Model::getNumberOfCurrentCity()
+{
+    return m_numberOfCurrentCity;
+}
+
+#pragma mark - Setters
+
 
 void Model::setCity(std::map<std::string, std::string> city)
 {
     m_cities.push_back(city);
 }
 
-void Model::clearCities()
-{
-    m_cities.clear();
-}
-
 void Model::setUserFavoriteCities(std::map<std::string, std::string> city)
 {
+    
     m_userFavoriteCities.push_back(city);
-    NSLog(@"%li",m_userFavoriteCities.size());
     if(m_userFavoriteCities.size() == 1)
     {
         getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]
@@ -79,26 +84,43 @@ void Model::setUserFavoriteCities(std::map<std::string, std::string> city)
     }
     else
     {
-         nextCity();
+        ++m_numberOfCurrentCity;
+        getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]
+                       .append(",")
+                       .append(m_userFavoriteCities[m_numberOfCurrentCity]["country"]));
+        onUpdate();
     }
-}
-std::vector<std::map<std::string, std::string>> Model::getUserFavoriteCities()
-{
-    return m_userFavoriteCities;
 }
 
 void Model::setNumberOfCurrentCity(int number)
 {
     m_numberOfCurrentCity = number;
 }
-int Model::getNumberOfCurrentCity()
+
+#pragma mark - Cleaning vectors
+
+void Model::releaseListOfAllCities()
 {
-    return m_numberOfCurrentCity;
+    
+    
+    for (auto map : m_allCities)
+    {
+        map.clear();
+    }
+    m_allCities.clear();
+    std::vector<std::map<std::string, std::string>>(m_allCities).swap(m_allCities);
 }
+
+void Model::clearCities()
+{
+    m_cities.clear();
+}
+
+#pragma mark - next and previous city
 
 void Model::nextCity()
 {
-    if(m_userFavoriteCities.size() > 1 && m_numberOfCurrentCity < m_userFavoriteCities.size())
+    if(m_userFavoriteCities.size() > 1 && m_numberOfCurrentCity < m_userFavoriteCities.size()-1)
     {
         ++m_numberOfCurrentCity;
         getWeatherData(m_userFavoriteCities[m_numberOfCurrentCity]["name"]);
@@ -117,20 +139,14 @@ void Model::previousCity()
     }
 }
 
+#pragma mark - read from JSON file
 
 std::vector<std::map<std::string, std::string>> Model::readFromJSONFile(const std::string filePath)
 {
     NSFileManager *fileManager;
-//    NSString *currentDirectoryPath;
-//    
     fileManager = [NSFileManager defaultManager];
-//    currentDirectoryPath = [fileManager currentDirectoryPath];
-//    
-//    NSString* filePath = [currentDirectoryPath stringByAppendingPathComponent:@(fileName.c_str())];
-    
+
     if (![fileManager fileExistsAtPath:@(filePath.c_str())]) {
-        NSLog(@"Error, file does not exist");
-        // TODO: ERROR
         return {{{"error",{"error","File does not exist"}}}};
     }
     
@@ -139,14 +155,13 @@ std::vector<std::map<std::string, std::string>> Model::readFromJSONFile(const st
     NSError *e = nil;
     NSArray *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
     
-//    if (!jsonData || e)
-//    {
-//        NSLog(@"Error, %@", e);
-//        // TODO: ERROR
-//        //return {{{"1",{"error","Can't read file"}}}};
-//    }
-//    else
-//    {
+    if (!jsonData || e)
+    {
+        NSLog(@"Error, %@", e);
+        return {{{"error",{"error","Can't read file"}}}};
+    }
+    else
+    {
         std::vector<std::map<std::string, std::string>> result;
         std::map<std::string, std::string> map;
     
@@ -160,8 +175,10 @@ std::vector<std::map<std::string, std::string>> Model::readFromJSONFile(const st
             map.clear();
         }
         return result;
-//    }
+    }
 }
+
+#pragma mark - writo to JSON file
 
 void Model::writeToJSONFile(const std::string fileName,const std::vector<std::map<std::string, std::string>> dataToWrite)
 {
@@ -200,7 +217,6 @@ void Model::writeToJSONFile(const std::string fileName,const std::vector<std::ma
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject: array
                                                    options:0
                                                      error:&e];
-    // TODO: Error handler
     if (!jsonData || e)
     {
          NSLog(@"Error, %@", e);
@@ -237,9 +253,11 @@ void Model::saveFavoriteCities()
 
 # pragma mark - Get Weather Forecast
 
+// Get current condition and wether forecast for 14 days and 24 hours
+// Transform Objective-C data from server respond into C++ model
 void Model::getWeatherData(std::string city)
 {
-    NSLog(@"%@", @(city.c_str()));
+
     m_currentCondition.clear();
     m_daysForecast.clear();
     m_hoursForecast.clear();
@@ -249,7 +267,9 @@ void Model::getWeatherData(std::string city)
     
     
     NSDictionary * weatherFor24hours = [weatherLoader getWeatherForDays:1
-                                                                andCity: [@(city.c_str()) stringByReplacingOccurrencesOfString:@" " withString:@""]
+                                                                andCity: [@(city.c_str())
+                                                                          stringByReplacingOccurrencesOfString:@" "
+                                                                          withString:@""]
                                                        withTimeInterval:1];
     
     NSDictionary *currentCondition = [[weatherFor24hours objectForKey:@"current_condition"] objectAtIndex:0];
@@ -270,14 +290,14 @@ void Model::getWeatherData(std::string city)
     
     NSDictionary *hours = [[[weatherFor24hours objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"hourly"];
     
-    int hourAsKey = 0;
+    long hourAsKey = 0;
     
     
     for (NSDictionary *hour in hours)
     {
         hourAsKey = [[hour objectForKey:@"time"] integerValue]/100;
-        NSLog(@"%@",[hour objectForKey:@"time"]);
-        // If "time"
+
+        // If "time" for hole day, so skip it
         if([[hour objectForKey:@"time"] isEqualToString:@"24"])
         {
             continue;
@@ -334,6 +354,7 @@ void Model::getWeatherData(std::string city)
     }
 }
 
+#pragma mark - Get weather image from code
 
 std::string Model::weatherImageNameFromCode(long weatherCode, long hours)
 {
