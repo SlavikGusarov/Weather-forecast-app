@@ -9,6 +9,7 @@
 #pragma once
 
 #include "IModelable.h"
+#include "MySignal.hpp"
 #include <string>
 #include <map>
 #include <vector>
@@ -26,12 +27,15 @@ class Model : IModelable
 public:
     Model();
     
+    MySignal onUpdate;
+    
     void clearCities();
     
     void setCity(std::map<std::string, std::string> city);
+    
     void getWeatherData(std::string city);
     
-    void writeToJSONFile(const std::string fileName,const std::map<std::string, std::string> dataToWrite);
+    void writeToJSONFile(const std::string fileName,const std::vector<std::map<std::string, std::string>> dataToWrite);
     std::vector<std::map<std::string, std::string>> readFromJSONFile(const std::string fileName);
     
     std::vector<std::map<std::string, std::string>> getCities();
@@ -40,20 +44,34 @@ public:
     std::map<int, std::map<std::string, std::string>> getHoursForecast();
     std::vector<std::map<std::string, std::string>> getDaysForecast();
     std::vector<std::map<std::string, std::string>>  getAllCities();
+    
+    
+    void setUserFavoriteCities(std::map<std::string, std::string> city);
+    std::vector<std::map<std::string, std::string>>  getUserFavoriteCities();
+    
+    void loadFavoriteCities();
+    void saveFavoriteCities();
+    
+    void setNumberOfCurrentCity(int number);
+    int getNumberOfCurrentCity();
+    
+    void nextCity();
+    void previousCity();
 private:
     
-    
-    void loadCities();
-    void saveCities();
-    
+    int m_numberOfCurrentCity;
     
     std::map<std::string, std::string> m_currentCondition;
     
-
+    std::vector<std::map<std::string, std::string>> m_userFavoriteCities;
+    
     std::vector<std::map<std::string, std::string>> m_cities;
+    std::vector<std::map<std::string, std::string>> m_allCities;
+    
+    
     std::map<int, std::map<std::string, std::string>> m_hoursForecast;
     std::vector<std::map<std::string, std::string>> m_daysForecast;
-    std::vector<std::map<std::string, std::string>> m_allCities;
+
     
     WeatherLoader *weatherLoader;
     

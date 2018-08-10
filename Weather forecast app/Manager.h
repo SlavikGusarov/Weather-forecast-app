@@ -6,26 +6,25 @@
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
 
-// C++ singleton class bringes many arrors
-// To avoid this arrors i use Objective-c singleton class
 
-//#pragma once
-//
-//#include "Model.h"
-//
-//// Синглтон класс, который вызывает ViewController и получает экземпляр Model
-//class Manager
-//{
-//public:
-//    static Manager* getInstance();
-//    ~Manager();
-//protected:
-//    Manager();
-//    
-//private:
-////    Manager(Manager const&);
-////    Manager& operator= (Manager const&);
-//    
-//    Model *m_model;
-//    static Manager* _instance;
-//};
+#pragma once
+
+#include "Model.h"
+
+// Синглтон класс, который вызывает ViewController и получает экземпляр Model
+class Manager
+{
+public:
+    static Manager* getInstance();
+    ~Manager();
+    Model* getModel();
+protected:
+    Manager();
+    
+private:
+    Manager(Manager const&) = delete;
+    Manager& operator= (Manager const&) = delete;
+    
+    Model *m_model;
+    static Manager* _instance;
+};

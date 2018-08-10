@@ -10,6 +10,7 @@
 #import "AddingCityViewController.h"
 #import "ModelManager.h"
 
+
 @interface AddingCityViewController ()
 
 @property (nonatomic, assign) ModelManager *manager;
@@ -26,8 +27,21 @@
     _manager = [ModelManager sharedManager];
 }
 - (IBAction)doneButton:(NSButton *)sender {
+    if ([_table selectedRow] != -1)
+    {
+        _manager.model->setUserFavoriteCities(_manager.model->getCities()[[_table selectedRow]]);
+        _manager.model->saveFavoriteCities();
+        //_manager.model->onUpdate("");
+    }
+    
     [self dismissViewController:self];
 }
+
+- (IBAction)cancelButton:(id)sender {
+    [self dismissViewController:self];
+}
+
+
 - (IBAction)searchWith:(NSSearchField *)sender {
     if ([sender.stringValue length] == 0)
     {
@@ -36,39 +50,30 @@
     }
     else
     {
-        NSLog(@"%@", sender.stringValue);
         if([sender.stringValue length] > 2)
         {
             _manager.model->clearCities();
-            int found = -1;
+            long found = -1;
             std::string cityToLover;
             for(auto city : _manager.model->getAllCities())
             {
-                std::string data = "Abc";
-                std::transform(data.begin(), data.end(), data.begin(), ::tolower);
-                
                 cityToLover = city["name"];
                 std::transform(cityToLover.begin(), cityToLover.end(), cityToLover.begin(), ::tolower);
                 
                 
                 found = cityToLover.find([sender.stringValue.lowercaseString UTF8String]);
-                if (found == -1)
-                {
-                    continue;
-                }
-                else if (found == 0)
+                if (found == 0)
                 {
                     _manager.model->setCity(city);
                 }
             }
         }
-        [_table reloadData];
     }
+    [_table reloadData];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
-    //NSLog(@"%ld", (long)_manager.model->getAllCities().size());
     return (NSInteger)_manager.model->getCities().size();
 }
 
@@ -76,12 +81,12 @@
 objectValueForTableColumn:(NSTableColumn *)tableColumn
             row:(NSInteger)row
 {
-    NSLog(@"%@", @(_manager.model->getCities()[row]["name"].c_str()));
-
     return [NSString stringWithFormat:@"%@,%@ (Lat: %@; Lng: %@)", @(_manager.model->getCities()[row]["name"].c_str()),
                                                                    @(_manager.model->getCities()[row]["country"].c_str()),
                                                                    @(_manager.model->getCities()[row]["lat"].c_str()),
                                                                    @(_manager.model->getCities()[row]["lng"].c_str())];
 }
+
+
 
 @end

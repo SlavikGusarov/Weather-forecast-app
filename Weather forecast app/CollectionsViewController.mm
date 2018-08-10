@@ -17,6 +17,8 @@
 
 @property (nonatomic, assign) NSInteger hour;
 @property (nonatomic, assign) ModelManager *manager;
+@property (weak) IBOutlet NSCollectionView *hourCollectionView;
+@property (weak) IBOutlet NSCollectionView *daysCollectionView;
 
 @end
 
@@ -32,18 +34,35 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date];
     _hour = [components hour];
+    
+    
+    __weak __typeof(self)weakSelf = self;
+    
+    _manager.model->onUpdate.connect(2, [weakSelf](){
+        NSLog(@"I'm here!");
+        [weakSelf.hourCollectionView reloadData];
+        [weakSelf.daysCollectionView reloadData];
+    });
+    
 }
 
 - (NSInteger)collectionView:(NSCollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section
 {
-    if([[collectionView identifier] isEqualToString:@"hourForecast"])
+    if (self.manager.model->getUserFavoriteCities().size() > 0)
     {
-        return 24;
+        if([[collectionView identifier] isEqualToString:@"hourForecast"])
+        {
+            return 24;
+        }
+        else
+        {
+            return 14;
+        }
     }
     else
     {
-        return 14;
+        return 0;
     }
 }
 

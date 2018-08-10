@@ -41,6 +41,7 @@
 
 - (NSDictionary*) getWeatherForDays:(int)days andCity:(NSString*)city withTimeInterval:(int)time
 {
+    NSLog(@"Request %@",city);
     _city = [[NSString alloc] initWithFormat:@"&q=%@", city];
     _numberOfDays = [[NSString alloc] initWithFormat:@"&num_of_days=%i", days];
     _timeInterval = [[NSString alloc] initWithFormat:@"&tp=%i", time];
@@ -75,7 +76,6 @@
     NSDictionary* result = [NSJSONSerialization JSONObjectWithData:oResponseData
                                                          options:0
                                                            error:&error];
-    NSLog(@"%@", result);
     return [result objectForKey:@"data"];
 }
 
