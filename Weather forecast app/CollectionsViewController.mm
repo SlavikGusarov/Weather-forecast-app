@@ -5,13 +5,11 @@
 //  Created by air on 08.08.18.
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
-
+#include "Manager.h"
 
 #import "CollectionsViewController.h"
+#import "WeatherItem.h"
 
-#import "HourWeatherItem.h"
-#import "DailyWetherItem.h"
-#include "Manager.h"
 
 #define COLLECTION_CONTROLLER_GROUP 2
 
@@ -76,7 +74,7 @@
 {
     
     long indexBasedOnTime = indexPath.item;
-    HourWeatherItem *item = [collectionView makeItemWithIdentifier:@"HourWeatherItem"
+    WeatherItem *item = [collectionView makeItemWithIdentifier:@"WeatherItem"
                                                       forIndexPath:indexPath ];
     std::vector<std::map<std::string, std::string>> forecast;
     if([[collectionView identifier] isEqualToString:@"hourForecast"])

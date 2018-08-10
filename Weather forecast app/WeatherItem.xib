@@ -102,7 +102,7 @@
                 </imageView>
             </subviews>
         </customView>
-        <customObject id="wDv-ZZ-in2" customClass="HourWeatherItem">
+        <customObject id="wDv-ZZ-in2" customClass="WeatherItem">
             <connections>
                 <outlet property="chanceOfRain" destination="kD4-Hb-qPb" id="Tkx-Ke-wIr"/>
                 <outlet property="cloudcover" destination="c4I-LN-fgM" id="RmM-3S-RLB"/>

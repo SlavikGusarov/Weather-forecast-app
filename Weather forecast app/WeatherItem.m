@@ -1,18 +1,17 @@
 //
-//  DailyWetherItem.m
+//  HourWeatherItem.m
 //  Weather forecast app
 //
-//  Created by air on 07.08.18.
+//  Created by air on 06.08.18.
 //  Copyright © 2018 Slavik Gusarov. All rights reserved.
 //
 
-#import "DailyWetherItem.h"
+#import "WeatherItem.h"
 
-@interface DailyWetherItem ()
-
+@interface WeatherItem ()
 @end
 
-@implementation DailyWetherItem
+@implementation WeatherItem
 
 - (void)viewDidLoad {
     [super viewDidLoad];

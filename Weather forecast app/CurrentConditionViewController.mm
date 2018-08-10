@@ -17,11 +17,28 @@
 }
 
 @property (nonatomic, assign) Manager *manager;
+@property (nonatomic, assign) NSInteger hour;
 
 @property (weak) IBOutlet NSTextField *city;
-@property (weak) IBOutlet NSTextField *country;
-@property (weak) IBOutlet NSTextField *currentTemperature;
 @property (weak) IBOutlet NSImageView *currentWeatherImage;
+
+// temp_C - Temperature in degrees Celsius.
+@property (weak) IBOutlet NSTextField *temperature;
+// weatherDesc - Weather condition description
+@property (weak) IBOutlet NSTextField *weatherDesc;
+// windspeedKmph - Wind speed in kilometers per hour
+@property (weak) IBOutlet NSTextField *windSpeed;
+// precipMM - Precipitation in millimeters
+@property (weak) IBOutlet NSTextField *precipMM;
+// humidity - Humidity in percentage (%)
+@property (weak) IBOutlet NSTextField *humidity;
+// visibility - Visibility in kilometers
+@property (weak) IBOutlet NSTextField *visibility;
+// pressure - Atmospheric pressure in millibars (mb)
+@property (weak) IBOutlet NSTextField *pressure;
+// cloudcover - Cloud cover amount in percentage (%)
+@property (weak) IBOutlet NSTextField *cloudcover;
+// chanceofrain - Chance of rain (precipitation) in percentage (%).
 
 @end
 
@@ -32,141 +49,80 @@
     
      _manager = Manager::getInstance();
     
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date];
+    _hour = [components hour];
+    
     if(_manager->getModel()->getUserFavoriteCities().size() == 0)
     {
         _city.stringValue = @"";
-        _country.stringValue = @"";
-        _currentTemperature.stringValue = @"";
+        _temperature.stringValue = @"";
+        _weatherDesc.stringValue = @"";
+        _windSpeed.stringValue = @"";
+        _precipMM.stringValue = @"";
+        _humidity.stringValue = @"";
+        _visibility.stringValue = @"";
+        _pressure.stringValue = @"";
+        _cloudcover.stringValue = @"";
     }
     else
     {
+        std::map<std::string, std::string> forecast = _manager->getModel()->getCurrentCondition();
+        
         _city.stringValue = @(_manager->getModel()->getUserFavoriteCities()[_manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
-        _country.stringValue = @(_manager->getModel()->getUserFavoriteCities()[_manager->getModel()->getNumberOfCurrentCity()]["country"].c_str());
-        _currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃",
-                                           @(_manager->getModel()->getCurrentCondition()["temp_C"].c_str())];
     
-        long weatherCode = [@(_manager->getModel()->getCurrentCondition()["weatherCode"].c_str()) integerValue];
-    
-        _currentWeatherImage.image = [NSImage imageNamed:[self weatherImageNameFromCode:weatherCode]];
+        
+        _temperature.stringValue = [NSString stringWithFormat:@"Temp: %@ ℃",
+                                   @(forecast["tempC"].c_str())];
+        _weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@ ℃",
+                                   @(forecast["weatherDesc"].c_str())];
+        _windSpeed.stringValue = [NSString stringWithFormat:@"Wind speed: %@ Kmph",
+                                 @(forecast["windspeedKmph"].c_str())];
+        _precipMM.stringValue = [NSString stringWithFormat:@"Precipitation: %@ mm",
+                                @(forecast["precipMM"].c_str())];
+        _humidity.stringValue = [NSString stringWithFormat:@"Humidity : %@ %%",
+                                @(forecast["humidity"].c_str())];
+        _visibility.stringValue = [NSString stringWithFormat:@"Visibility : %@ Km",
+                                  @(forecast["visibility"].c_str())];
+        _pressure.stringValue = [NSString stringWithFormat:@"Pressure: %@ mb",
+                                @(forecast["pressure"].c_str())];
+        _cloudcover.stringValue = [NSString stringWithFormat:@"Cloud cover: %@ %%",
+                                  @(forecast["cloudcover"].c_str())];
+
+        
+        long weatherCode = [@(forecast["weatherCode"].c_str()) integerValue];
+        _currentWeatherImage.image = [NSImage imageNamed:@(_manager->getModel()->weatherImageNameFromCode(weatherCode, _hour).c_str())];
     }
     
     __weak __typeof(self)weakSelf = self;
-    
     _manager->getModel()->onUpdate.connect(CURRENT_CODITION_GROUP, [weakSelf](){
+        
         weakSelf.city.stringValue = @(weakSelf.manager->getModel()->getUserFavoriteCities()[weakSelf.manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
-        weakSelf.country.stringValue = @(weakSelf.manager->getModel()->getUserFavoriteCities()[weakSelf.manager->getModel()->getNumberOfCurrentCity()]["country"].c_str());
-        weakSelf.currentTemperature.stringValue = [NSString stringWithFormat:@"Current temperature: %@ ℃",
-                                           @(weakSelf.manager->getModel()->getCurrentCondition()["temp_C"].c_str())];
+        
+        std::map<std::string, std::string> forecast = weakSelf.manager->getModel()->getCurrentCondition();
+        
+        weakSelf.temperature.stringValue = [NSString stringWithFormat:@"Temp: %@ ℃",
+                                    @(forecast["temp_C"].c_str())];
+        weakSelf.weatherDesc.stringValue = [NSString stringWithFormat:@"Desc: %@",
+                                    @(forecast["weatherDesc"].c_str())];
+        weakSelf.windSpeed.stringValue = [NSString stringWithFormat:@"Wind speed: %@ Kmph",
+                                  @(forecast["windspeedKmph"].c_str())];
+        weakSelf.precipMM.stringValue = [NSString stringWithFormat:@"Precipitation: %@ mm",
+                                 @(forecast["precipMM"].c_str())];
+        weakSelf.humidity.stringValue = [NSString stringWithFormat:@"Humidity : %@ %%",
+                                 @(forecast["humidity"].c_str())];
+        weakSelf.visibility.stringValue = [NSString stringWithFormat:@"Visibility : %@ Km",
+                                   @(forecast["visibility"].c_str())];
+        weakSelf.pressure.stringValue = [NSString stringWithFormat:@"Pressure: %@ mb",
+                                 @(forecast["pressure"].c_str())];
+        weakSelf.cloudcover.stringValue = [NSString stringWithFormat:@"Cloud cover: %@ %%",
+                                   @(forecast["cloudcover"].c_str())];
         
         long weatherCode = [@(weakSelf.manager->getModel()->getCurrentCondition()["weatherCode"].c_str()) integerValue];
-        
-        weakSelf.currentWeatherImage.image = [NSImage imageNamed:[weakSelf weatherImageNameFromCode:weatherCode]];
+        weakSelf.currentWeatherImage.image = [NSImage imageNamed:@(weakSelf.manager->getModel()->weatherImageNameFromCode(weatherCode, weakSelf.hour).c_str())];
         
     });
     
 }
-
-- (NSString*) weatherImageNameFromCode: (long) weatherCode
-{
-    // TODO: DELETE THIS
-    switch (weatherCode) {
-        case 113:
-        {
-            // Sunny
-            return  @"113";
-        }
-        case 116:
-        {
-            // Partly Cloudy
-            return @"116";
-        }
-        case 119:
-        {
-            // Cloudy
-            return @"119";
-        }
-        case 122:
-        {
-            // Overcast
-            return @"122";
-        }
-        case 143:
-        case 248:
-        case 260:
-        {
-            // Fog
-            return @"143";
-        }
-        case 176:
-        case 263:
-        case 266:
-        case 293:
-        case 296:
-        case 353:
-        case 362:
-        case 368:
-        case 374:
-        {
-            // Light rain
-            return @"176";
-        }
-        case 200:
-        case 395:
-        case 392:
-        case 389:
-        case 386:
-        {
-            // Thunder
-            return @"200";
-        }
-        case 302:
-        case 308:
-        case 305:
-        case 299:
-        case 311:
-        case 359:
-        case 356:
-        case 365:
-        case 371:
-        case 377:
-        {
-            // Heavy rain
-            return @"302";
-        }
-        case 179:
-        case 182:
-        case 317:
-        case 185:
-        case 329:
-        case 326:
-        case 323:
-        {
-            // Light snow
-            return @"179";
-        }
-        case 227:
-        case 230:
-        case 350:
-        case 338:
-        case 335:
-        case 332:
-        case 320:
-        {
-            // Heavy snow
-            return @"227";
-        }
-        case 281:
-        case 314:
-        case 284:
-        {
-            // Freeze
-            return @"281";
-        }
-        default:
-        {
-            return @"default";
-        }
-    }
-}
-
 @end

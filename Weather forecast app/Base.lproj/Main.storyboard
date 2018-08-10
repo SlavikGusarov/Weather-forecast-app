@@ -915,40 +915,94 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q1p-o2-tjG">
-                                <rect key="frame" x="63" y="157" width="171" height="34"/>
+                                <rect key="frame" x="63" y="246" width="171" height="34"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="City" id="Y1f-on-8C2">
                                     <font key="font" metaFont="system" size="27"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-th-3bH">
-                                <rect key="frame" x="63" y="115" width="194" height="34"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Country" id="yyg-7v-pzI">
-                                    <font key="font" metaFont="system" size="20"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNQ-9l-3An">
+                                <rect key="frame" x="63" y="213" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="9TS-b6-hP7">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYW-Vp-bjh">
-                                <rect key="frame" x="311" y="170" width="256" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="6wW-ct-C58">
-                                    <font key="font" metaFont="system" size="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-0t-PPE">
+                                <rect key="frame" x="63" y="191" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="iMC-hr-VOu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qLI-Q7-OCB">
+                                <rect key="frame" x="63" y="147" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="Hux-Dk-GFa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BIK-W1-HVZ">
+                                <rect key="frame" x="63" y="125" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="Ncd-PG-cEG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ShU-7r-qPe">
+                                <rect key="frame" x="63" y="81" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="mYN-PY-Yhn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Dh-ex-Off">
+                                <rect key="frame" x="63" y="103" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="mnH-xa-SCo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzN-p2-4Vy">
+                                <rect key="frame" x="63" y="59" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="blQ-dg-KBf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wY6-RS-obD">
+                                <rect key="frame" x="63" y="169" width="200" height="25"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="VfM-5f-gOl">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-0m-Qbk">
-                                <rect key="frame" x="519" y="115" width="46" height="49"/>
+                                <rect key="frame" x="530" y="230" width="50" height="50"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="lxB-6s-8lY"/>
                             </imageView>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="city" destination="Q1p-o2-tjG" id="Iim-r0-4Zp"/>
-                        <outlet property="country" destination="Xyz-th-3bH" id="HAM-1C-fOv"/>
-                        <outlet property="currentTemperature" destination="XYW-Vp-bjh" id="1vW-NW-n7M"/>
+                        <outlet property="cloudcover" destination="CzN-p2-4Vy" id="vCR-vF-4cd"/>
                         <outlet property="currentWeatherImage" destination="oPY-0m-Qbk" id="gTM-Td-ywC"/>
+                        <outlet property="humidity" destination="BIK-W1-HVZ" id="sT2-yV-3YZ"/>
+                        <outlet property="precipMM" destination="qLI-Q7-OCB" id="g2i-lj-euU"/>
+                        <outlet property="pressure" destination="ShU-7r-qPe" id="vqX-5m-icV"/>
+                        <outlet property="temperature" destination="HNQ-9l-3An" id="h6H-PF-uuk"/>
+                        <outlet property="visibility" destination="8Dh-ex-Off" id="4nS-Qh-ger"/>
+                        <outlet property="weatherDesc" destination="gtF-0t-PPE" id="HwI-lx-dUT"/>
+                        <outlet property="windSpeed" destination="wY6-RS-obD" id="R37-c3-gb1"/>
                     </connections>
                 </viewController>
                 <customObject id="6hR-Px-rMr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

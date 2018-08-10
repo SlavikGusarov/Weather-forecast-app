@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		451D38F321188C80006E3B79 /* HourWeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D38F121188C80006E3B79 /* HourWeatherItem.m */; };
-		451D38F421188C80006E3B79 /* HourWeatherItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 451D38F221188C80006E3B79 /* HourWeatherItem.xib */; };
+		451D38F321188C80006E3B79 /* WeatherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 451D38F121188C80006E3B79 /* WeatherItem.m */; };
+		451D38F421188C80006E3B79 /* WeatherItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 451D38F221188C80006E3B79 /* WeatherItem.xib */; };
 		452D09F7211B3D1300510295 /* CollectionsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 452D09F6211B3D1300510295 /* CollectionsViewController.mm */; };
-		452D09FA211B4B6C00510295 /* ModelManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 452D09F9211B4B6C00510295 /* ModelManager.mm */; };
 		452D09FD211B6D2400510295 /* WindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 452D09FC211B6D2400510295 /* WindowController.mm */; };
 		452D0A00211B76FE00510295 /* AddingCityViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 452D09FF211B76FE00510295 /* AddingCityViewController.mm */; };
-		457118AB2119DBA200ADF99F /* DailyWetherItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 457118A92119DBA200ADF99F /* DailyWetherItem.m */; };
-		457118AC2119DBA200ADF99F /* DailyWetherItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 457118AA2119DBA200ADF99F /* DailyWetherItem.xib */; };
 		4574726721148BA50076D630 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4574726621148BA50076D630 /* AppDelegate.m */; };
 		4574726A21148BA50076D630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4574726921148BA50076D630 /* main.m */; };
 		4574726D21148BA50076D630 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4574726C21148BA50076D630 /* ViewController.mm */; };
@@ -28,20 +25,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		451D38F021188C80006E3B79 /* HourWeatherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourWeatherItem.h; sourceTree = "<group>"; };
-		451D38F121188C80006E3B79 /* HourWeatherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourWeatherItem.m; sourceTree = "<group>"; };
-		451D38F221188C80006E3B79 /* HourWeatherItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourWeatherItem.xib; sourceTree = "<group>"; };
+		451D38F021188C80006E3B79 /* WeatherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherItem.h; sourceTree = "<group>"; };
+		451D38F121188C80006E3B79 /* WeatherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherItem.m; sourceTree = "<group>"; };
+		451D38F221188C80006E3B79 /* WeatherItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherItem.xib; sourceTree = "<group>"; };
 		452D09F5211B3D1300510295 /* CollectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionsViewController.h; sourceTree = "<group>"; };
 		452D09F6211B3D1300510295 /* CollectionsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CollectionsViewController.mm; sourceTree = "<group>"; };
-		452D09F8211B4B6C00510295 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelManager.h; sourceTree = "<group>"; };
-		452D09F9211B4B6C00510295 /* ModelManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ModelManager.mm; sourceTree = "<group>"; };
 		452D09FB211B6D2400510295 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		452D09FC211B6D2400510295 /* WindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindowController.mm; sourceTree = "<group>"; };
 		452D09FE211B76FE00510295 /* AddingCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddingCityViewController.h; sourceTree = "<group>"; };
 		452D09FF211B76FE00510295 /* AddingCityViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AddingCityViewController.mm; sourceTree = "<group>"; };
-		457118A82119DBA200ADF99F /* DailyWetherItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyWetherItem.h; sourceTree = "<group>"; };
-		457118A92119DBA200ADF99F /* DailyWetherItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyWetherItem.m; sourceTree = "<group>"; };
-		457118AA2119DBA200ADF99F /* DailyWetherItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyWetherItem.xib; sourceTree = "<group>"; };
 		4574726221148BA50076D630 /* Weather forecast app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather forecast app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4574726521148BA50076D630 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4574726621148BA50076D630 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,9 +70,9 @@
 		457118A62119D22A00ADF99F /* WetherItem */ = {
 			isa = PBXGroup;
 			children = (
-				451D38F021188C80006E3B79 /* HourWeatherItem.h */,
-				451D38F121188C80006E3B79 /* HourWeatherItem.m */,
-				451D38F221188C80006E3B79 /* HourWeatherItem.xib */,
+				451D38F021188C80006E3B79 /* WeatherItem.h */,
+				451D38F121188C80006E3B79 /* WeatherItem.m */,
+				451D38F221188C80006E3B79 /* WeatherItem.xib */,
 			);
 			name = WetherItem;
 			sourceTree = "<group>";
@@ -90,20 +82,9 @@
 			children = (
 				4577833C211CA813003E27DE /* MySignal */,
 				45778331211C45C7003E27DE /* C++ Model */,
-				45778330211C44D1003E27DE /* Obj-C Manager */,
 				4577832F211C44BD003E27DE /* C++ Manager */,
 			);
 			name = "Model and Manager";
-			sourceTree = "<group>";
-		};
-		457118AD2119DBB700ADF99F /* DailyWeherItem */ = {
-			isa = PBXGroup;
-			children = (
-				457118A82119DBA200ADF99F /* DailyWetherItem.h */,
-				457118A92119DBA200ADF99F /* DailyWetherItem.m */,
-				457118AA2119DBA200ADF99F /* DailyWetherItem.xib */,
-			);
-			name = DailyWeherItem;
 			sourceTree = "<group>";
 		};
 		4574725921148BA50076D630 = {
@@ -126,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				4577832E211C40F5003E27DE /* CollectionsController */,
+				457118A72119D24600ADF99F /* Model and Manager */,
 				452D09FB211B6D2400510295 /* WindowController.h */,
 				452D09FC211B6D2400510295 /* WindowController.mm */,
 				4574726521148BA50076D630 /* AppDelegate.h */,
@@ -136,7 +118,6 @@
 				4574727021148BA50076D630 /* Main.storyboard */,
 				4574726821148BA50076D630 /* Supporting Files */,
 				4574727321148BA50076D630 /* Info.plist */,
-				457118A72119D24600ADF99F /* Model and Manager */,
 				452D09FE211B76FE00510295 /* AddingCityViewController.h */,
 				452D09FF211B76FE00510295 /* AddingCityViewController.mm */,
 				45778336211C9892003E27DE /* CurrentConditionViewController.h */,
@@ -157,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				457118A62119D22A00ADF99F /* WetherItem */,
-				457118AD2119DBB700ADF99F /* DailyWeherItem */,
 				452D09F5211B3D1300510295 /* CollectionsViewController.h */,
 				452D09F6211B3D1300510295 /* CollectionsViewController.mm */,
 			);
@@ -171,15 +151,6 @@
 				45EC11CE2115BFD30025F5D0 /* Manager.mm */,
 			);
 			name = "C++ Manager";
-			sourceTree = "<group>";
-		};
-		45778330211C44D1003E27DE /* Obj-C Manager */ = {
-			isa = PBXGroup;
-			children = (
-				452D09F8211B4B6C00510295 /* ModelManager.h */,
-				452D09F9211B4B6C00510295 /* ModelManager.mm */,
-			);
-			name = "Obj-C Manager";
 			sourceTree = "<group>";
 		};
 		45778331211C45C7003E27DE /* C++ Model */ = {
@@ -268,8 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				451D38F421188C80006E3B79 /* HourWeatherItem.xib in Resources */,
-				457118AC2119DBA200ADF99F /* DailyWetherItem.xib in Resources */,
+				451D38F421188C80006E3B79 /* WeatherItem.xib in Resources */,
 				4574726F21148BA50076D630 /* Assets.xcassets in Resources */,
 				4574727221148BA50076D630 /* Main.storyboard in Resources */,
 			);
@@ -286,13 +256,11 @@
 				4574726D21148BA50076D630 /* ViewController.mm in Sources */,
 				4574726A21148BA50076D630 /* main.m in Sources */,
 				45EC11D02115BFD30025F5D0 /* Manager.mm in Sources */,
-				452D09FA211B4B6C00510295 /* ModelManager.mm in Sources */,
 				452D09F7211B3D1300510295 /* CollectionsViewController.mm in Sources */,
 				4574726721148BA50076D630 /* AppDelegate.m in Sources */,
 				45EC11CC2115BD910025F5D0 /* Model.mm in Sources */,
 				452D09FD211B6D2400510295 /* WindowController.mm in Sources */,
-				457118AB2119DBA200ADF99F /* DailyWetherItem.m in Sources */,
-				451D38F321188C80006E3B79 /* HourWeatherItem.m in Sources */,
+				451D38F321188C80006E3B79 /* WeatherItem.m in Sources */,
 				45EC11D22115C0670025F5D0 /* WeatherLoader.m in Sources */,
 				45778338211C9892003E27DE /* CurrentConditionViewController.mm in Sources */,
 				4577833B211CA7FC003E27DE /* MySignal.cpp in Sources */,

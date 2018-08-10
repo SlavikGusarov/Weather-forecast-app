@@ -8,10 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HourWeatherItem : NSCollectionViewItem
+@interface WeatherItem : NSCollectionViewItem
+
 @property (weak) IBOutlet NSTextField *time;
+// temp_C - Temperature in degrees Celsius.
 @property (weak) IBOutlet NSTextField *temperature;
+// weatherDesc - Weather condition description
 @property (weak) IBOutlet NSTextField *weatherDesc;
+// Image from weatherCode
 @property (weak) IBOutlet NSImageCell *weatherImage;
 // windspeedKmph - Wind speed in kilometers per hour
 @property (weak) IBOutlet NSTextField *windSpeed;
@@ -27,4 +31,5 @@
 @property (weak) IBOutlet NSTextField *cloudcover;
 // chanceofrain - Chance of rain (precipitation) in percentage (%).
 @property (weak) IBOutlet NSTextField *chanceOfRain;
+
 @end

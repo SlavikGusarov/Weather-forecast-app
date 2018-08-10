@@ -9,7 +9,6 @@
 #include "Manager.h"
 
 #import "AddingCityViewController.h"
-#import "ModelManager.h"
 
 
 @interface AddingCityViewController ()

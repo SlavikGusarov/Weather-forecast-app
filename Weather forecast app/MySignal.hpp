@@ -12,13 +12,6 @@
 #include <functional>
 #include <string>
 
-enum Action
-{
-    Action_NewDocument = 0,
-    Action_NewEvent,
-    Action_NewDog
-};
-
 typedef std::function<void()> SignalFunc;
 
 class MySignal
