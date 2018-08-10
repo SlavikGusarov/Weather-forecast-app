@@ -20,7 +20,7 @@ Model::Model()
     m_numberOfCurrentCity = 0;
     this->loadFavoriteCities();
    
-    m_allCities = this->readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
+    //m_allCities = this->readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
 }
 
 
@@ -41,9 +41,19 @@ std::vector<std::map<std::string, std::string>> Model::getDaysForecast()
     return m_daysForecast;
 }
 
+void Model::loadAllCities()
+{
+    m_allCities = readFromJSONFile("/Users/air/Desktop/Weather forecast app/cities.json");
+}
+
 std::vector<std::map<std::string, std::string>> Model::getAllCities()
 {
     return m_allCities;
+}
+
+void Model::releaseListOfAllCities()
+{
+    m_allCities.clear();
 }
 
 void Model::setCity(std::map<std::string, std::string> city)

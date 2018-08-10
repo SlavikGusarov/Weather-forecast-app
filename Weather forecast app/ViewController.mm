@@ -36,16 +36,19 @@
     
     std::vector<std::map<std::string, std::string>> cities = _manager->getModel()->getUserFavoriteCities();
     
+    // If user has not favorite cities, clean lable
     if(cities.size() == 0)
     {
         _city.stringValue = @"";
     }
+    // If user has favorite cities, load title for first one
     else
     {
         _city.stringValue = @(cities[_manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
     }
-    __weak __typeof(self)weakSelf = self;
     
+    __weak __typeof(self)weakSelf = self;
+    // Subscribe to data update
     _manager->getModel()->onUpdate.connect(MODEL_GROUP, [weakSelf](){
         weakSelf.city.stringValue = @(weakSelf.manager->getModel()->getUserFavoriteCities()[weakSelf.manager->getModel()->getNumberOfCurrentCity()]["name"].c_str());
         

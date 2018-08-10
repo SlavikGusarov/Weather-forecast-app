@@ -43,8 +43,10 @@ public:
     // TODO : Make hourforecast vector
     std::map<int, std::map<std::string, std::string>> getHoursForecast();
     std::vector<std::map<std::string, std::string>> getDaysForecast();
-    std::vector<std::map<std::string, std::string>>  getAllCities();
     
+    void loadAllCities();
+    std::vector<std::map<std::string, std::string>>  getAllCities();
+    void releaseListOfAllCities();
     
     void setUserFavoriteCities(std::map<std::string, std::string> city);
     std::vector<std::map<std::string, std::string>>  getUserFavoriteCities();

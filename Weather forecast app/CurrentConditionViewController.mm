@@ -15,6 +15,7 @@
 @property (weak) IBOutlet NSTextField *country;
 @property (weak) IBOutlet NSTextField *currentTemperature;
 @property (weak) IBOutlet NSImageView *currentWeatherImage;
+
 @property (nonatomic, assign) ModelManager *manager;
 @end
 
